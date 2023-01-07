@@ -137,31 +137,32 @@ def server_listen():
         data = conn.recv(1024).decode('UTF-8')
         info_from_user = json.loads(data)
         print(info_from_user)
-
         if info_from_user['mode'] == 'Login' or 'Registration':
             check_in_db(info_from_user)
-        else:
-            start().request_db.start()
+        if info_from_user['mode'] == 'MainWindow':
+            request_to_db()
 
 def check_in_db(info_from_user):
     try:
         connect = connectDB()
         cursor = connect.cursor()
-        cursor.execute(f"SELECT username, password FROM users where username like '%{info_from_user['username']}%' AND password like '%{info_from_user['password']}%';")
-        result = cursor.fetchall()
         match info_from_user['mode']:
             case 'Login':
+                cursor.execute(f"SELECT username, password FROM users where username like '%{info_from_user['username']}%' AND password like '%{info_from_user['password']}%';")
+                result = cursor.fetchall()
                 if len(result) > 0:
                     conn.send(bytes('OK', encoding = 'UTF-8'))
                 else:
                     conn.send(bytes('NOK', encoding = 'UTF-8'))
             case 'Registration':
+                cursor.execute(f"SELECT username, password FROM users where username like '%{info_from_user['username']}%';")
+                result = cursor.fetchall()
                 if len(result) == 0:
                     cursor.execute(f"INSERT INTO `users` (`username`, `password`) VALUES ('{info_from_user['username']}', '{info_from_user['password']}');")
                     connect.commit()
-                    conn.send(bytes('Регистрация прошла успешно!', encoding='UTF-8'))
+                    conn.send(bytes('OK', encoding='UTF-8'))
                 else:
-                    conn.send(bytes('Такой логин уже есть, введите новый', encoding='UTF-8'))
+                    conn.send(bytes('NOK', encoding='UTF-8'))
     except Exception as e:
         print(e)
 
@@ -175,6 +176,6 @@ def request_to_db():
         result_to_json = json.dumps(result)
         conn.send(bytes(f'{result_to_json}', encoding='UTF-8'))
         
-
+        
 if __name__ == '__main__':
     start()

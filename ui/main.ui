@@ -87,7 +87,7 @@
     <attribute name="title">
      <string>Bybit</string>
     </attribute>
-    <widget class="QListWidget" name="BybitlistWidget">
+    <widget class="QTableWidget" name="BybittableWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -96,13 +96,50 @@
        <height>400</height>
       </rect>
      </property>
+     <column>
+      <property name="text">
+       <string>Symbol</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Ask</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Bid</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+     </column>
     </widget>
    </widget>
    <widget class="QWidget" name="HuobiTab">
     <attribute name="title">
      <string>Huobi</string>
     </attribute>
-    <widget class="QListWidget" name="listWidget_3">
+    <widget class="QTableWidget" name="HuobitableWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -111,13 +148,50 @@
        <height>400</height>
       </rect>
      </property>
+     <column>
+      <property name="text">
+       <string>Symbol</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Ask</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Bid</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+     </column>
     </widget>
    </widget>
    <widget class="QWidget" name="GateTab">
     <attribute name="title">
      <string>Gate</string>
     </attribute>
-    <widget class="QListWidget" name="listWidget_4">
+    <widget class="QTableWidget" name="GatetableWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -126,13 +200,50 @@
        <height>400</height>
       </rect>
      </property>
+     <column>
+      <property name="text">
+       <string>Symbol</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Ask</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Bid</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+     </column>
     </widget>
    </widget>
    <widget class="QWidget" name="KucoinTab">
     <attribute name="title">
      <string>Kucoin</string>
     </attribute>
-    <widget class="QListWidget" name="listWidget_5">
+    <widget class="QTableWidget" name="KucointableWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -141,13 +252,50 @@
        <height>400</height>
       </rect>
      </property>
+     <column>
+      <property name="text">
+       <string>Symbol</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Ask</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Bid</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+     </column>
     </widget>
    </widget>
    <widget class="QWidget" name="MexcTab">
     <attribute name="title">
      <string>Mexc</string>
     </attribute>
-    <widget class="QListWidget" name="listWidget_6">
+    <widget class="QTableWidget" name="MexctableWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -156,6 +304,43 @@
        <height>400</height>
       </rect>
      </property>
+     <column>
+      <property name="text">
+       <string>Symbol</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Ask</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Bid</string>
+      </property>
+      <property name="font">
+       <font>
+        <family>Minecraft Rus</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+     </column>
     </widget>
    </widget>
   </widget>
