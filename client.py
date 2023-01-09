@@ -17,7 +17,6 @@ def client(self, data):
             if ans == 'OK':
                 print('Можете войти')
             elif ans == 'NOK':
-                # print('Неправильный логин или пароль!')
                 dlg = QMessageBox(self)
                 dlg.setWindowTitle('Ошибка')
                 dlg.setText('Неправильный логин или пароль!')
@@ -28,7 +27,12 @@ def client(self, data):
             if ans == 'OK':
                 print('Получилось зарегистрироваться!')
             elif ans == 'NOK':
-                print('Такой логин уже есть, введите новый!')
+                dlg = QMessageBox(self)
+                dlg.setWindowTitle('Ошибка')
+                dlg.setText('Такой логин уже есть, введите новый!')
+                button = dlg.exec()
+                if button == QMessageBox.StandardButton.Ok:
+                    print("OK!")
         case 'MainWindow':
             data = b''
             while True:
