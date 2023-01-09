@@ -1,10 +1,10 @@
 from PyQt6.QtWidgets import QWidget, QMessageBox
-from PyQt6 import uic
-from PyQt6 import QtGui
+from PyQt6 import QtGui, uic
 from client import client
 
 
 class Login(QWidget):
+    
     def __init__(self):
         super(Login, self).__init__()
         uic.loadUi('./ui/login.ui', self)
@@ -24,7 +24,12 @@ class Login(QWidget):
         
     def __login_btn_clicked(self):
         if self.usernameLineEdit.text() == '' or self.passwordLineEdit.text() == '':
-            print('Заполните все поля!')
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle('Ошибка')
+            dlg.setText('Введите все поля!')
+            button = dlg.exec()
+            if button == QMessageBox.StandardButton.Ok:
+                print("OK!")
         else:
             self.data = {
                 'username':self.usernameLineEdit.text(),

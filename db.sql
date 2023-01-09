@@ -11,8 +11,8 @@ CREATE TABLE `users` (
 CREATE TABLE `binance` (
   `id` integer UNSIGNED NOT NULL auto_increment,
   `symbol` varchar(20) NOT NULL,
-  `ask` float NOT NULL,
-  `bid` float NOT NULL,
+  `ask` varchar(20) NOT NULL,
+  `bid` varchar(20) NOT NULL,
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (symbol),
   KEY (id)
@@ -21,8 +21,8 @@ CREATE TABLE `binance` (
 CREATE TABLE `bybit` (
   `id` integer UNSIGNED NOT NULL auto_increment,
   `symbol` varchar(20) NOT NULL,
-  `ask` float NOT NULL,
-  `bid` float NOT NULL,
+  `ask` varchar(20) NOT NULL,
+  `bid` varchar(20) NOT NULL,
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (symbol),
   KEY (id)
@@ -31,8 +31,8 @@ CREATE TABLE `bybit` (
 CREATE TABLE `huobi` (
   `id` integer UNSIGNED NOT NULL auto_increment,
   `symbol` varchar(20) NOT NULL,
-  `ask` float NOT NULL,
-  `bid` float NOT NULL,
+  `ask` varchar(20) NOT NULL,
+  `bid` varchar(20) NOT NULL,
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (symbol),
   KEY (id)
@@ -41,8 +41,8 @@ CREATE TABLE `huobi` (
 CREATE TABLE `gate` (
   `id` integer UNSIGNED NOT NULL auto_increment,
   `symbol` varchar(20) NOT NULL,
-  `ask` float NOT NULL,
-  `bid` float NOT NULL,
+  `ask` varchar(20) NOT NULL,
+  `bid` varchar(20) NOT NULL,
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (symbol),
   KEY (id)
@@ -51,8 +51,8 @@ CREATE TABLE `gate` (
 CREATE TABLE `kucoin` (
   `id` integer UNSIGNED NOT NULL auto_increment,
   `symbol` varchar(20) NOT NULL,
-  `ask` float NOT NULL,
-  `bid` float NOT NULL,
+  `ask` varchar(20) NOT NULL,
+  `bid` varchar(20) NOT NULL,
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (symbol),
   KEY (id)
@@ -61,8 +61,8 @@ CREATE TABLE `kucoin` (
 CREATE TABLE `mexc` (
   `id` integer UNSIGNED NOT NULL auto_increment,
   `symbol` varchar(20) NOT NULL,
-  `ask` float NOT NULL,
-  `bid` float NOT NULL,
+  `ask` varchar(20) NOT NULL,
+  `bid` varchar(20) NOT NULL,
   `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (symbol),
   KEY (id)

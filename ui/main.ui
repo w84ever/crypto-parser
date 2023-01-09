@@ -344,7 +344,7 @@
     </widget>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="updateButton">
    <property name="geometry">
     <rect>
      <x>660</x>
@@ -360,7 +360,7 @@
     <string>Обновить</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="ExitButton">
    <property name="geometry">
     <rect>
      <x>50</x>

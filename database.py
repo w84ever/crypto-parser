@@ -1,17 +1,34 @@
 import requests
 import MySQLdb
 import time
-import threading
-import socket
-import json
+
 
 setting = {
-        "refreshTime":60, # Время повторной загрузки в секундах
         "host":"localhost", # Хост для MySQL
         "user":"root", # Логин MySQL
         "passwd":"root", # Пароль MySQL
         "db":"exchanges", # База MySQL
         }
+
+def create_db_and_execute_sql_script():
+    try:
+        conn = MySQLdb.connect(host=setting['host'], user=setting['user'], passwd=setting['passwd'])
+        cursor = conn.cursor()
+        cursor.execute(f"CREATE DATABASE {setting['db']}")
+    except:
+        pass
+    conn = connectDB()
+    cursor = conn.cursor()
+    fd = open('./db.sql', 'r')
+    sqlFile = fd.read()
+    fd.close()
+    sqlCommands = sqlFile.split(';')
+    for command in sqlCommands:
+        try:
+            if command.strip() != '':
+                cursor.execute(command)
+        except Exception as e:
+            pass
 
 def connectDB():
     return MySQLdb.connect(host=setting['host'], user=setting['user'], passwd=setting['passwd'], db=setting['db'])
@@ -104,78 +121,3 @@ def parse_Mexc():
         except Exception as e:
             print(e)
     save_parse(price, exchange)
-
-def start():
-
-    binance = threading.Thread(target=parse_Binance)
-    bybit = threading.Thread(target=parse_Bybit)
-    huobi = threading.Thread(target=parse_Huobi)
-    gate = threading.Thread(target=parse_Gate)
-    kucoin = threading.Thread(target=parse_Kucoin)
-    mexc = threading.Thread(target=parse_Mexc)
-    request_db = threading.Thread(target=request_to_db)
-    server = threading.Thread(target=server_listen)
-
-    binance.start()
-    bybit.start()
-    huobi.start()
-    gate.start()
-    kucoin.start()
-    mexc.start()
-    server.start()
-    # request_db.start()
-
-def server_listen():
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind(('', 6000))
-    sock.listen(10)
-    print('Server is running, please press Ctrl + C to stop')
-    while True:
-        global conn, addr
-        conn, addr = sock.accept()
-        print('connected: ', addr)
-        data = conn.recv(1024).decode('UTF-8')
-        info_from_user = json.loads(data)
-        print(info_from_user)
-        if info_from_user['mode'] == 'Login' or 'Registration':
-            check_in_db(info_from_user)
-        if info_from_user['mode'] == 'MainWindow':
-            request_to_db()
-
-def check_in_db(info_from_user):
-    try:
-        connect = connectDB()
-        cursor = connect.cursor()
-        match info_from_user['mode']:
-            case 'Login':
-                cursor.execute(f"SELECT username, password FROM users where username like '%{info_from_user['username']}%' AND password like '%{info_from_user['password']}%';")
-                result = cursor.fetchall()
-                if len(result) > 0:
-                    conn.send(bytes('OK', encoding = 'UTF-8'))
-                else:
-                    conn.send(bytes('NOK', encoding = 'UTF-8'))
-            case 'Registration':
-                cursor.execute(f"SELECT username, password FROM users where username like '%{info_from_user['username']}%';")
-                result = cursor.fetchall()
-                if len(result) == 0:
-                    cursor.execute(f"INSERT INTO `users` (`username`, `password`) VALUES ('{info_from_user['username']}', '{info_from_user['password']}');")
-                    connect.commit()
-                    conn.send(bytes('OK', encoding='UTF-8'))
-                else:
-                    conn.send(bytes('NOK', encoding='UTF-8'))
-    except Exception as e:
-        print(e)
-
-def request_to_db():
-    exchanges = ['binance', 'bybit', 'huobi', 'gate', 'kucoin', 'mexc']
-    connect = connectDB()
-    cursor = connect.cursor()
-    for exchange in exchanges:
-        cursor.execute(f"SELECT symbol, ask, bid FROM {exchange}")
-        result = cursor.fetchall()
-        result_to_json = json.dumps(result)
-        conn.send(bytes(f'{result_to_json}', encoding='UTF-8'))
-        
-        
-if __name__ == '__main__':
-    start()
