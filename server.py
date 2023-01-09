@@ -46,18 +46,16 @@ def check_in_db(info_from_user):
         cursor = connect.cursor()
         match info_from_user['mode']:
             case 'Login':
-                cursor.execute(f"SELECT username, password FROM users where username like '%{info_from_user['username']}%' AND password like '%{info_from_user['password']}%';")
+                cursor.execute(f"SELECT username, password FROM users where username = '{info_from_user['username']}' AND password = '{info_from_user['password']}';")
                 result = cursor.fetchall()
                 if len(result) > 0:
-                    print(result)
                     conn.send(bytes('OK', encoding = 'UTF-8'))
                 else:
                     conn.send(bytes('NOK', encoding = 'UTF-8'))
             case 'Registration':
-                cursor.execute(f"SELECT username, password FROM users where username like '%{info_from_user['username']}%';")
+                cursor.execute(f"SELECT username, password FROM users where username = '{info_from_user['username']}';")
                 result = cursor.fetchall()
                 if len(result) == 0:
-                    
                     cursor.execute(f"INSERT INTO `users` (`username`, `password`) VALUES ('{info_from_user['username']}', '{info_from_user['password']}');")
                     connect.commit()
                     conn.send(bytes('OK', encoding='UTF-8'))
