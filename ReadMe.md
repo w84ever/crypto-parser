@@ -9,7 +9,7 @@ to run the server use:
 to run the client use:
     python main.py
 
-if u'r on windows, install this font:
+if u r on windows, install this font:
     'minecraft'
 
 ABOUT
